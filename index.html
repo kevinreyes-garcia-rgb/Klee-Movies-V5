@@ -3,82 +3,83 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Klee Movies - Streaming</title>
+    <title>Klee Movies | Streaming</title>
     <style>
+        :root {
+            --primary: #c86f8b;
+            --primary-dark: #a0425f;
+            --bg: #f0f2f5;
+            --card-bg: #ffffff;
+        }
+
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f0f2f5;
-            color: #1c1e21;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background-color: var(--bg);
             margin: 0;
             padding: 20px;
-        }
-        
-        .header-branding {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-        
-        .header-branding img {
-            max-width: 100px;
-            height: auto;
-            border-radius: 50%;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            color: #1c1e21;
         }
 
-        h1 { color: #c86f8b; text-align: center; }
-        h2 { 
-            border-bottom: 3px solid #c86f8b; 
-            padding-bottom: 10px; 
-            margin-top: 40px; 
-            color: #333; 
-        }
-
-        .video-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 20px;
-            padding: 20px 0;
-        }
-
-        .video-item {
-            background-color: #fff;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-            overflow: hidden;
-            transition: transform 0.2s;
-        }
-
-        .video-item:hover { transform: translateY(-5px); }
-
-        .video-item video {
-            width: 100%;
-            aspect-ratio: 16 / 9;
-            background: #000;
-        }
-
-        .video-item p {
-            padding: 12px;
-            margin: 0;
-            text-align: center;
-            font-weight: 500;
-            font-size: 0.9em;
-        }
-
-        /* Contenedor de Login */
+        /* Login Centrado */
         #login-container {
-            background: white;
-            border-radius: 15px;
+            max-width: 400px;
+            margin: 10vh auto;
+            background: var(--card-bg);
             padding: 40px;
-            margin: 80px auto;
-            max-width: 350px;
+            border-radius: 20px;
             box-shadow: 0 10px 25px rgba(0,0,0,0.1);
             text-align: center;
         }
 
+        .header-branding img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        h1 { color: var(--primary); margin-bottom: 20px; }
+        h2 { border-left: 5px solid var(--primary); padding-left: 15px; margin-top: 40px; }
+
+        /* Grid de Videos */
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            padding: 20px 0;
+        }
+
+        .video-item {
+            background: var(--card-bg);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .video-item:hover { transform: translateY(-5px); }
+
+        video {
+            width: 100%;
+            aspect-ratio: 16/9;
+            background: #000;
+            display: block;
+        }
+
+        .video-item p {
+            padding: 15px;
+            margin: 0;
+            font-weight: 500;
+            text-align: center;
+        }
+
+        /* Formularios */
         .password-form input {
             width: 100%;
             padding: 12px;
-            margin: 8px 0;
+            margin: 10px 0;
             border: 1px solid #ddd;
             border-radius: 8px;
             box-sizing: border-box;
@@ -87,79 +88,82 @@
         .password-form button {
             width: 100%;
             padding: 12px;
-            background-color: #c35377;
+            background: var(--primary);
             color: white;
             border: none;
             border-radius: 8px;
-            cursor: pointer;
             font-weight: bold;
-            margin-top: 10px;
+            cursor: pointer;
+            transition: 0.3s;
         }
 
-        .password-form button:hover { background-color: #a0425f; }
+        .password-form button:hover { background: var(--primary-dark); }
 
+        .error-msg { color: #ff4444; font-size: 0.9em; margin-top: 10px; min-height: 1em; }
+
+        /* Sección Privada */
         #private-section {
-            background-color: #fff3cd;
+            margin-top: 60px;
+            padding: 30px;
+            background: #fff3cd;
+            border-radius: 20px;
             border: 2px dashed #ffeeba;
-            border-radius: 15px;
-            padding: 20px;
-            margin-top: 50px;
         }
-
-        .error-msg { color: #d93025; font-size: 0.85em; margin-top: 5px; }
     </style>
 </head>
 <body>
 
     <div id="login-container">
-        <img src="https://files.catbox.moe/fdchtm.jpeg" alt="Logo" style="width:80px; border-radius:50%; margin-bottom:15px;">
-        <h1>KLEE Movies</h1>
-        <p>Inicia sesión para ver el catálogo</p>
+        <div class="header-branding">
+            <img src="https://files.catbox.moe/fdchtm.jpeg" alt="Logo">
+        </div>
+        <h1>Acceso Clientes</h1>
         <div class="password-form">
-            <input type="text" id="global-user" placeholder="Usuario">
-            <input type="password" id="global-pass" placeholder="Contraseña">
-            <button onclick="globalLogin()">Entrar</button>
-            <p id="global-error" class="error-msg"></p>
+            <input type="text" id="g-user" placeholder="Usuario">
+            <input type="password" id="g-pass" placeholder="Contraseña">
+            <button onclick="login()">Entrar al Catálogo</button>
+            <p id="g-error" class="error-msg"></p>
         </div>
     </div>
 
     <div id="main-content" style="display: none;">
-        <div class="header-branding">
+        <header class="header-branding" style="text-align: center;">
             <img src="https://files.catbox.moe/evzvn4.jpeg" alt="Logo">
-            <h1>Klee Movies - Catálogo</h1>
-        </div>
+            <h1>Klee Movies Library</h1>
+        </header>
 
-        <h2>Bocchi The Rock</h2>
-        <div class="video-grid">
-            <div class="video-item">
-                <video controls preload="metadata"><source src="https://files.catbox.moe/5h90ie.mp4" type="video/mp4"></video>
-                <p>Episodio 1</p>
+        <section>
+            <h2>Bocchi The Rock</h2>
+            <div class="video-grid">
+                <div class="video-item">
+                    <video controls preload="metadata"><source src="https://files.catbox.moe/5h90ie.mp4" type="video/mp4"></video>
+                    <p>Capítulo 1</p>
+                </div>
+                <div class="video-item">
+                    <video controls preload="metadata"><source src="https://files.catbox.moe/raj6qu.mp4" type="video/mp4"></video>
+                    <p>Capítulo 2</p>
+                </div>
             </div>
-            <div class="video-item">
-                <video controls preload="metadata"><source src="https://files.catbox.moe/raj6qu.mp4" type="video/mp4"></video>
-                <p>Episodio 2</p>
-            </div>
-        </div>
+        </section>
 
         <div id="private-section">
-            <h2>🔒 Área del Propietario</h2>
-            <div id="private-auth" class="password-form">
-                <p>Contenido restringido. Solo para el administrador.</p>
-                <input type="text" id="priv-user" placeholder="Admin User">
-                <input type="password" id="priv-pass" placeholder="Admin Pass">
-                <button onclick="checkPrivate()">Acceder a lo Privado</button>
-                <p id="priv-error" class="error-msg"></p>
+            <h2>🔒 Zona VIP (Owner)</h2>
+            <div id="p-auth" class="password-form">
+                <input type="text" id="p-user" placeholder="Admin User">
+                <input type="password" id="p-pass" placeholder="Admin Pass">
+                <button onclick="loginPrivate()">Desbloquear Videos</button>
+                <p id="p-error" class="error-msg"></p>
             </div>
 
-            <div id="private-videos-content" style="display: none;">
+            <div id="p-content" style="display: none;">
                 <div class="video-grid">
                     <div class="video-item">
                         <video controls><source src="https://files.catbox.moe/mx3d9h.mp4" type="video/mp4"></video>
-                        <p>Clip Privado 1</p>
+                        <p>Clip Secreto 1</p>
                     </div>
                     <div class="video-item">
                         <video controls><source src="https://files.catbox.moe/9rhazg.mp4" type="video/mp4"></video>
-                        <p>Clip Privado 2</p>
+                        <p>Clip Secreto 2</p>
                     </div>
                 </div>
             </div>
@@ -167,31 +171,31 @@
     </div>
 
     <script>
-        // Credenciales (Recuerda que esto es visible en el código fuente)
-        const USERS = {
-            global: { u: "usuario", p: "usuario11" },
-            admin: { u: "Klee", p: "Chizu8890" }
+        // Configuración de acceso
+        const CONFIG = {
+            public: { u: "usuario", p: "usuario11" },
+            owner: { u: "Klee", p: "Chizu8890" }
         };
 
-        function globalLogin() {
-            const u = document.getElementById('global-user').value;
-            const p = document.getElementById('global-pass').value;
-            if(u === USERS.global.u && p === USERS.global.p) {
+        function login() {
+            const u = document.getElementById('g-user').value;
+            const p = document.getElementById('g-pass').value;
+            if(u === CONFIG.public.u && p === CONFIG.public.p) {
                 document.getElementById('login-container').style.display = 'none';
                 document.getElementById('main-content').style.display = 'block';
             } else {
-                document.getElementById('global-error').innerText = "Credenciales incorrectas";
+                document.getElementById('g-error').innerText = "Usuario o contraseña incorrectos";
             }
         }
 
-        function checkPrivate() {
-            const u = document.getElementById('priv-user').value;
-            const p = document.getElementById('priv-pass').value;
-            if(u === USERS.admin.u && p === USERS.admin.p) {
-                document.getElementById('private-auth').style.display = 'none';
-                document.getElementById('private-videos-content').style.display = 'block';
+        function loginPrivate() {
+            const u = document.getElementById('p-user').value;
+            const p = document.getElementById('p-pass').value;
+            if(u === CONFIG.owner.u && p === CONFIG.owner.p) {
+                document.getElementById('p-auth').style.display = 'none';
+                document.getElementById('p-content').style.display = 'block';
             } else {
-                document.getElementById('priv-error').innerText = "Acceso denegado";
+                document.getElementById('p-error').innerText = "Acceso denegado al Owner";
             }
         }
     </script>
