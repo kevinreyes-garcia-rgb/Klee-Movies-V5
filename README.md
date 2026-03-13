@@ -10,7 +10,7 @@ Hola vienvenido a Klee Movies es algo nuevo donde pondre algunos animes o pelicu
 |💧Rol | 👤 Desarrollador |
 | :--- | :--- |
 | **Lead Dev** | [Klee](https://github.com/kevinreyes-garcia-rgb/) |
-| **Colaboradora** | [Cuervita](https://github.com/rezemd56-hash/AnimeCu-V3.git) |
+| **Colaboradora** | [Cuervita](https://github.com/rezemd56-hash/) |
 
 ## 🛠️ Instalación y Uso
 
